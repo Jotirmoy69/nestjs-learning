@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { customer } from './interfaces/customer.interface';
+import { customer } from './interfaces/customer.interface'; 
+import { createCustomerDto } from './dto/customer.dto';
 
 @Injectable()
 export class CustomerService {
@@ -16,7 +17,13 @@ export class CustomerService {
         return this.customers;
     }
 
-    addCustomers(customer){
+    addCustomers(createCustomerDto: createCustomerDto) {
+        const customer = {
+            id:Date.now(),
+            ...createCustomerDto
+        }
 
+        this.customers.push(customer);
+        return customer
     }
 }
