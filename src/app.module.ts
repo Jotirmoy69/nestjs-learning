@@ -15,12 +15,22 @@ import { DatabaseController } from './database/database.controller';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { EvService } from './ev/ev.service';
-import { EvController } from './ev/ev.controller';
+import { EvController } from './ev/ev.controller'; 
+import { students } from './database/connect/user.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [EmployeeModule, StudentModule, CustomerModule, DatabaseModule, ConfigModule.forRoot({
     isGlobal: true,
-  })],
+  }),
+  TypeOrmModule.forRoot({
+    type: 'postgres',
+    url: process.env.DATABASE_URI,
+    entities: [students],
+    autoLoadEntities: true,
+    synchronize: true
+  })
+  ],
   controllers: [
     AppController,
     ProductController,

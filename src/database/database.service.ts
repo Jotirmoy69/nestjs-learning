@@ -15,6 +15,8 @@ export class DatabaseService {
   }
 
   getIsConnected() {
+    
     return this.isConnected ? 'Connected' : 'Disconnected';
+
   }
 }

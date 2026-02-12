@@ -9,6 +9,7 @@ export class DatabaseController {
     getDatabaseStatus() {
         return {
             status: this.databaseService.getIsConnected()
+            
         }
     }
 }
